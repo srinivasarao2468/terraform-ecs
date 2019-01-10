@@ -15,7 +15,7 @@ resource "aws_security_group" "instance" {
   }
 }
 
-# We separate the rules from the aws_security_group because then we can manipulate the 
+# We separate the rules from the aws_security_group because then we can manipulate the
 # aws_security_group outside of this module
 resource "aws_security_group_rule" "outbound_internet_access" {
   type              = "egress"
@@ -37,14 +37,14 @@ resource "aws_launch_configuration" "launch" {
   key_name             = "${var.key_name}"
 
   # aws_launch_configuration can not be modified.
-  # Therefore we use create_before_destroy so that a new modified aws_launch_configuration can be created 
+  # Therefore we use create_before_destroy so that a new modified aws_launch_configuration can be created
   # before the old one get's destroyed. That's why we use name_prefix instead of name.
   lifecycle {
     create_before_destroy = true
   }
 }
 
-# Instances are scaled across availability zones http://docs.aws.amazon.com/autoscaling/latest/userguide/auto-scaling-benefits.html 
+# Instances are scaled across availability zones http://docs.aws.amazon.com/autoscaling/latest/userguide/auto-scaling-benefits.html
 resource "aws_autoscaling_group" "asg" {
   name                 = "${var.environment}_${var.cluster}_${var.instance_group}"
   max_size             = "${var.max_size}"
