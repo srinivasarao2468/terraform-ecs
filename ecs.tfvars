@@ -16,4 +16,8 @@ desired_capacity = 1
 
 instance_type = "t2.micro"
 
-ecs_aws_ami = "ami-0307f7ccf6ea35750"
+ecs_aws_ami = "ami-0b31574e5d83d5c42"
+
+jenkins_master_count = 1
+
+jenkins_slave_count = 1

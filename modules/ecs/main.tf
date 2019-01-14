@@ -29,6 +29,18 @@ module "ecs_instances" {
   cloudwatch_prefix       = "${var.cloudwatch_prefix}"
 }
 
+# Deploying Jenkins  Resources
+
+module "jenkins" {
+  source               = "../instances"
+  vpc_id               = "${module.network.vpc_id}"
+  key_name             = "${var.key_name}"
+  jenkins_master_count = "${var.jenkins_master_count}"
+  jenkins_slave_count  = "${var.jenkins_slave_count}"
+  instance_type        = "${var.instance_type}"
+  subnets              = "${module.network.public_subnet_ids}"
+}
+
 resource "aws_ecs_cluster" "cluster" {
   name = "${var.cluster}"
 }

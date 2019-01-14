@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }
 
 module "ecs" {
@@ -18,6 +18,8 @@ module "ecs" {
   key_name             = "${aws_key_pair.ecs.key_name}"
   instance_type        = "${var.instance_type}"
   ecs_aws_ami          = "${var.ecs_aws_ami}"
+  jenkins_master_count = "${var.jenkins_master_count}"
+  jenkins_slave_count  = "${var.jenkins_slave_count}"
 }
 
 resource "aws_key_pair" "ecs" {
@@ -32,6 +34,8 @@ variable "min_size" {}
 variable "desired_capacity" {}
 variable "instance_type" {}
 variable "ecs_aws_ami" {}
+variable "jenkins_slave_count" {}
+variable "jenkins_master_count" {}
 
 variable "private_subnet_cidrs" {
   type = "list"

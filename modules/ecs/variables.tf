@@ -80,3 +80,13 @@ variable "cloudwatch_prefix" {
   default     = ""
   description = "If you want to avoid cloudwatch collision or you don't want to merge all logs to one log group specify a prefix"
 }
+
+variable "jenkins_master_count" {
+  default     = ""
+  description = "no of jenkins master instances to launch"
+}
+
+variable "jenkins_slave_count" {
+  default     = ""
+  description = "no of jenkins slave instances to launch"
+}
